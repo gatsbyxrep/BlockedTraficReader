@@ -9,6 +9,7 @@ import java.net.URL;
 
 
 public class Reader {
+    // Generate ArrayList of BlockedTraficInfo from remote file
     public static ArrayList<BlockedTrafficInfo> readFromUrl(String fileUrl) {
         ArrayList<BlockedTrafficInfo> trafficInfos = new ArrayList<>();
         try {
@@ -27,4 +28,6 @@ public class Reader {
         }
         return trafficInfos;
     }
+    // TODO: read from locale file
+
 }
