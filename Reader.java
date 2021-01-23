@@ -10,8 +10,8 @@ import java.net.URL;
 
 public class Reader {
     // Generate ArrayList of BlockedTraficInfo from remote file
-    public static ArrayList<BlockedTrafficInfo> readFromUrl(String fileUrl) {
-        ArrayList<BlockedTrafficInfo> trafficInfos = new ArrayList<>();
+    private static String readAllLinesFromUrl(String fileUrl)  {
+        StringBuilder stringBuilder = new StringBuilder();
         try {
             URL url = new URL(fileUrl);
             BufferedReader in = new BufferedReader(
@@ -20,13 +20,22 @@ public class Reader {
             String inputLine;
             in.readLine();
             while ((inputLine = in.readLine()) != null)
-                trafficInfos.add(BlockedTrafficInfo.parse(inputLine));
+                stringBuilder.append(inputLine);
             in.close();
         }
-        catch(IOException | ParseException e) {
+        catch(IOException e) {
             e.printStackTrace();
         }
-        return trafficInfos;
+        return stringBuilder.toString();
+    }
+    public static ArrayList<BlockedTrafficInfo> readFromUrl(String fileUrl, IParseStrategy strategy) {
+        ArrayList<BlockedTrafficInfo> infos = null;
+        try {
+            infos = strategy.parse(readAllLinesFromUrl(fileUrl));
+        } catch(ParseException e) {
+            e.printStackTrace();
+        }
+        return infos;
     }
     // TODO: read from locale file
 

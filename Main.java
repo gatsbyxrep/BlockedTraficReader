@@ -7,8 +7,12 @@ import java.text.ParseException;
 public class Main {
 
     public static void main(String[] args) {
-        String url = "https://data.gov.spb.ru/opendata/7803032323-block_traffic/data-20210118T051130-structure-20200120T130522.csv";
-        ArrayList<BlockedTrafficInfo> blockedTrafficInfoArrayList = Reader.readFromUrl(url);
-        System.out.println(blockedTrafficInfoArrayList.get(0));
+        String cvsUrl = "https://data.gov.spb.ru/opendata/7803032323-block_traffic/data-20210118T051130-structure-20200120T130522.csv";
+        String xmlUrl = "https://data.gov.spb.ru/opendata/7803032323-block_traffic/data-20210118T051130-structure-20200120T130522.xml";
+        IParseStrategy parseStrategy = new XMLParser();
+        ArrayList<BlockedTrafficInfo> infos = Reader.readFromUrl(xmlUrl, parseStrategy);
+        for(BlockedTrafficInfo info : infos)
+            System.out.println(info.toString());
+
     }
 }

@@ -1,7 +1,5 @@
 package com.company;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class BlockedTrafficInfo {
@@ -84,23 +82,15 @@ public class BlockedTrafficInfo {
     }
 
     // Methods
-    // TODO: parse from XML, cause sometimes CSV file has invalid data
-    public static BlockedTrafficInfo parse(String line) throws ParseException {
-        String[] info = line.split(",");
-        return new BlockedTrafficInfo(Integer.parseInt(info[0]),  info[1], info[2], info[6], info[7],
-                new SimpleDateFormat("yyyyMMdd").parse(info[10]), new SimpleDateFormat("yyyyMMdd").parse(info[11]));
-    }
-
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Code:" + this.code)
-                .append(", Order number:" + this.getOrderNumber())
-                .append(", Customer:" + this.customer)
-                .append(", District:" + this.district)
-                .append(", Address:" + this.address)
-                .append(", Start date:" + this.startDate.toString())
-                .append(", End date:" + this.endDate.toString());
-        return stringBuilder.toString();
+        String string = "Code:" + this.code +
+                ", Order number:" + this.orderNumber +
+                ", Customer:" + this.customer +
+                ", District:" + this.district +
+                ", Address:" + this.address +
+                ", Start date:" + this.startDate.toString() +
+                ", End date:" + this.endDate.toString();
+        return string;
 
     }
 }
