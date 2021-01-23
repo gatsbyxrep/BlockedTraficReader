@@ -1,7 +1,7 @@
-# BlockedTraficReader
-The program for collecting blocked trafic data in Saint-Petersburg\
+## BlockedTraficReader
+The program for collecting blocked trafic data in Saint-Petersburg
 
-# TODO:
+## TODO:
 Add command args
 Add simple console menu or GUI
 
